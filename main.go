@@ -2,7 +2,9 @@ package main
 
 import (
 	"Berry_IM/db_migrate"
+	"Berry_IM/routers"
 	"fmt"
+	"github.com/gin-gonic/gin"
 )
 
 func init() {
@@ -15,4 +17,16 @@ func init() {
 
 func main() {
 	fmt.Println("Hello Berry IM...")
+
+	r := gin.Default()
+
+	// 注册路由
+	routers.InitApiRouters(r)
+
+	// 启动服务器
+	err := r.Run(":9091")
+	if err != nil {
+		panic(err)
+		return
+	}
 }

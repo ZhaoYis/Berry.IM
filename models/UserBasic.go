@@ -4,6 +4,7 @@ import "gorm.io/gorm"
 
 type UserBasic struct {
 	gorm.Model
+	Uid           string `gorm:"column:uid;type:varchar(36);not null;unique"`
 	Name          string
 	PassWord      string
 	Phone         string

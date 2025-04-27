@@ -1,0 +1,39 @@
+package ucenter
+
+import (
+	"Berry_IM/controller"
+	webRequest "Berry_IM/controller/models/request/ucenter"
+	webResponse "Berry_IM/controller/models/response/ucenter"
+	bizRequest "Berry_IM/service/models/request/ucenter"
+	"Berry_IM/service/ucenter"
+	"github.com/gin-gonic/gin"
+)
+
+type UserController struct {
+	// 继承 BaseController
+	controller.BaseController
+	userService ucenter.UserService
+}
+
+func NewUserController() *UserController {
+	return &UserController{
+		userService: ucenter.NewUserService(),
+	}
+}
+
+func (uc *UserController) CreateUser(c *gin.Context) {
+	var webReq webRequest.WebUserCreatedRequest
+	if err := c.ShouldBindJSON(&webReq); err != nil {
+		uc.Error(c, err.Error())
+		return
+	}
+	// 调用服务层
+	bizReq := &bizRequest.BizUserCreatedRequest{}
+	bo, err := uc.userService.CreateUser(bizReq)
+	if err != nil && bo != nil {
+		uc.Error(c, err.Error())
+	}
+	uc.SuccessWithData(c, &webResponse.UserCreatedResultVO{
+		Uid: bo.Uid,
+	})
+}
