@@ -7,6 +7,15 @@ import (
 )
 
 func InitApiRouters(r *gin.Engine) {
+	// 初始化用户模块路由
+	initUserControllerRouters(r)
+}
+
+/**
+ * @Description: 初始化用户模块路由
+ * @param r
+ */
+func initUserControllerRouters(r *gin.Engine) {
 	// 初始化控制器
 	ucenterController := ucenter.NewUserController()
 
