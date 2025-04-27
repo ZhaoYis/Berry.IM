@@ -12,7 +12,7 @@ type UserBasic struct {
 	Identity      string `gorm:"column:identity;type:varchar(128)"`
 	ClientIp      string `gorm:"column:client_ip;type:varchar(36)"`
 	ClientPort    string `gorm:"column:client_port;type:varchar(8)"`
-	Salt          string `json:"salt,type:varchar(100)"`
+	Salt          string `json:"salt,type:varchar(128)"`
 	LoginTime     uint64 `json:"login_time,type:uint64"`
 	HeartbeatTime uint64 `json:"heartbeat_time,type:uint64"`
 	LogoutTime    uint64 `json:"logout_time,type:uint64"`
