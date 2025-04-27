@@ -35,7 +35,7 @@ func (uc *UserController) CreateUser(c *gin.Context) {
 		Phone:    webReq.Phone,
 	}
 	bo, err := uc.userService.CreateUser(bizReq)
-	if err != nil && bo != nil {
+	if err != nil {
 		uc.Error(c, err.Error())
 	}
 	uc.SuccessWithData(c, &webResponse.UserCreatedResultVO{
