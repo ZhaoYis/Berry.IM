@@ -12,7 +12,7 @@ func NewUserService() *UserServiceImpl {
 	return &UserServiceImpl{}
 }
 
-func (us *UserServiceImpl) CreateUser(*bizRequest.BizUserCreatedRequest) (*bizResponse.UserCreatedResultBO, error) {
+func (us *UserServiceImpl) CreateUser(request *bizRequest.BizUserCreatedRequest) (*bizResponse.UserCreatedResultBO, error) {
 	return &bizResponse.UserCreatedResultBO{
 		Uid: "1",
 	}, nil
