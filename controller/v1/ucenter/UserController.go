@@ -28,7 +28,12 @@ func (uc *UserController) CreateUser(c *gin.Context) {
 		return
 	}
 	// 调用服务层
-	bizReq := &bizRequest.BizUserCreatedRequest{}
+	bizReq := &bizRequest.BizUserCreatedRequest{
+		Name:     webReq.Name,
+		Password: webReq.Password,
+		Email:    webReq.Email,
+		Phone:    webReq.Phone,
+	}
 	bo, err := uc.userService.CreateUser(bizReq)
 	if err != nil && bo != nil {
 		uc.Error(c, err.Error())
