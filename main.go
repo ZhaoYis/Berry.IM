@@ -19,7 +19,6 @@ func main() {
 	fmt.Println("Hello Berry IM...")
 
 	r := gin.Default()
-
 	// 注册路由
 	routers.InitApiRouters(r)
 

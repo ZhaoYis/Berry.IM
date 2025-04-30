@@ -1,0 +1,2 @@
+mysql:
+  dns: root:1qaz2wsx.com@tcp(127.0.0.1:3306)/berry_im?charset=utf8mb4&parseTime=True&loc=Local
