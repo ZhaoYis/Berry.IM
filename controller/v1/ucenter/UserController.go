@@ -5,19 +5,19 @@ import (
 	webRequest "Berry_IM/controller/models/request/ucenter"
 	webResponse "Berry_IM/controller/models/response/ucenter"
 	bizRequest "Berry_IM/service/models/request/ucenter"
-	"Berry_IM/service/ucenter"
+	userService "Berry_IM/service/ucenter"
 	"github.com/gin-gonic/gin"
 )
 
 type UserController struct {
 	// 继承 BaseController
 	controller.BaseController
-	userService ucenter.UserService
+	userService userService.UserService
 }
 
 func NewUserController() *UserController {
 	return &UserController{
-		userService: ucenter.NewUserService(),
+		userService: userService.NewUserService(),
 	}
 }
 
