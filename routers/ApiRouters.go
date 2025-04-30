@@ -7,18 +7,6 @@ import (
 )
 
 func InitApiRouters(r *gin.Engine) {
-	// 初始化用户模块路由
-	initUserControllerRouters(r)
-}
-
-/**
- * @Description: 初始化用户模块路由
- * @param r
- */
-func initUserControllerRouters(r *gin.Engine) {
-	// 初始化控制器
-	ucenterController := ucenter.NewUserController()
-
 	// 设置文件大小限制（默认是32MiB）
 	r.MaxMultipartMemory = 8 << 20 // 8 MiB
 
@@ -32,6 +20,18 @@ func initUserControllerRouters(r *gin.Engine) {
 		c.Next()
 		fmt.Printf("[Middleware]After-全局中间件...\n")
 	})
+
+	// 初始化用户模块路由
+	initUserControllerRouters(r)
+}
+
+/**
+ * @Description: 初始化用户模块路由
+ * @param r
+ */
+func initUserControllerRouters(r *gin.Engine) {
+	// 初始化控制器
+	ucenterController := ucenter.NewUserController()
 
 	userGroup := r.Group("/api/v1/ucenter")
 	{

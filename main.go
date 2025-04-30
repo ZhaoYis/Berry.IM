@@ -24,7 +24,7 @@ func main() {
 	routers.InitApiRouters(r)
 
 	// 启动服务器
-	err := r.Run(":9091")
+	err := r.Run(":9191")
 	if err != nil {
 		panic(err)
 		return
