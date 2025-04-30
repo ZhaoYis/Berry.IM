@@ -3,12 +3,17 @@ package main
 import (
 	"Berry_IM/db_migrate"
 	"Berry_IM/routers"
+	"Berry_IM/utils"
 	"fmt"
 	"github.com/gin-gonic/gin"
 )
 
 func init() {
 	fmt.Println("[main]Let's go！")
+	//初始化配置文件
+	utils.InitAppConfig()
+	utils.InitMySQL()
+
 	//自动迁移数据库
 	dam := db_migrate.NewDbAutoMigrate()
 	dam.AutoMigrate()

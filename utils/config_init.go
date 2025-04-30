@@ -7,12 +7,8 @@ import (
 	"github.com/spf13/viper"
 )
 
-func init() {
-	initAppConfig()
-}
-
-// initAppConfig 初始化配置文件
-func initAppConfig() {
+// InitAppConfig 初始化配置文件
+func InitAppConfig() {
 	// 设置配置文件的名称
 	viper.SetConfigName("app")
 	// 设置配置文件的路径

@@ -10,17 +10,13 @@ import (
 	"time"
 )
 
-func init() {
-	initMySQL()
-}
-
 var (
 	db  *gorm.DB
 	err error
 )
 
-// initMySQL 初始化MySQL
-func initMySQL() {
+// InitMySQL 初始化MySQL
+func InitMySQL() {
 	newLogger := logger.New(
 		log.New(os.Stdout, "\r\n", log.LstdFlags), // io writer
 		logger.Config{
