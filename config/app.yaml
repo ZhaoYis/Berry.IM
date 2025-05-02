@@ -1,2 +1,7 @@
+app:
+  env: dev
+  server:
+    host: 0.0.0.0
+    port: 9191
 mysql:
   dns: root:1qaz2wsx.com@tcp(127.0.0.1:3306)/berry_im?charset=utf8mb4&parseTime=True&loc=Local

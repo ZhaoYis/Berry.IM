@@ -10,9 +10,8 @@ import (
 
 func init() {
 	fmt.Println("[main]Let's go！")
-	//初始化配置文件
-	utils.InitAppConfig()
-	utils.InitMySQL()
+	//初始化应用
+	utils.InitApp()
 
 	//自动迁移数据库
 	dam := db_migrate.NewDbAutoMigrate()
@@ -28,7 +27,7 @@ func main() {
 	routers.InitApiRouters(r)
 
 	// 启动服务器
-	err := r.Run(":9191")
+	err := r.Run(":" + utils.GetAppConfig().Server.Port)
 	if err != nil {
 		panic(err)
 		return
