@@ -1,7 +1,6 @@
 package main
 
 import (
-	"Berry_IM/db_migrate"
 	"Berry_IM/routers"
 	"Berry_IM/utils"
 	"fmt"
@@ -12,11 +11,6 @@ func init() {
 	fmt.Println("[main]Let's go！")
 	//初始化应用
 	utils.InitApp()
-
-	//自动迁移数据库
-	dam := db_migrate.NewDbAutoMigrate()
-	dam.AutoMigrate()
-	fmt.Println("[main]迁移数据库完成！")
 }
 
 func main() {
