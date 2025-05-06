@@ -7,7 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func InitApiRouters(r *gin.Engine) {
+func initApiRouters(r *gin.Engine) {
 	// 设置文件大小限制（默认是32MiB）
 	r.MaxMultipartMemory = 8 << 20 // 8 MiB
 

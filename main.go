@@ -4,7 +4,6 @@ import (
 	"Berry_IM/routers"
 	"Berry_IM/utils"
 	"fmt"
-	"github.com/gin-gonic/gin"
 )
 
 func init() {
@@ -15,11 +14,7 @@ func init() {
 
 func main() {
 	fmt.Println("Hello Berry IM...")
-
-	r := gin.Default()
-	// 注册路由
-	routers.InitApiRouters(r)
-
+	r := routers.Router()
 	// 启动服务器
 	err := r.Run(":" + utils.GetAppConfig().Server.Port)
 	if err != nil {
