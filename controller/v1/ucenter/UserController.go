@@ -21,6 +21,16 @@ func NewUserController() *UserController {
 	}
 }
 
+// CreateUser 创建用户
+//
+//	@Summary		创建用户
+//	@Description	创建用户
+//	@Tags			ucenter
+//	@Accept			json
+//	@Produce		json
+//	@Param			webReq	body		webRequest.WebUserCreatedRequest	true	"请求参数"
+//	@Success		200		{object}	webResponse.UserCreatedResultVO
+//	@Router			/ucenter/create [post]
 func (uc *UserController) CreateUser(c *gin.Context) {
 	var webReq webRequest.WebUserCreatedRequest
 	if err := c.ShouldBindJSON(&webReq); err != nil {

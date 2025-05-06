@@ -2,21 +2,23 @@ package db_migrate
 
 import (
 	"Berry_IM/models"
-	"Berry_IM/utils"
+	"gorm.io/gorm"
 )
 
 type DbAutoMigrate struct {
+	db *gorm.DB
 }
 
-func NewDbAutoMigrate() *DbAutoMigrate {
-	return &DbAutoMigrate{}
+func NewDbAutoMigrate(gormDb *gorm.DB) *DbAutoMigrate {
+	return &DbAutoMigrate{
+		db: gormDb,
+	}
 }
 
 // AutoMigrate 自动迁移数据库
 func (dam *DbAutoMigrate) AutoMigrate() {
-	db := utils.GetMySqlDB()
 	// 迁移 UserBasic
-	err := db.AutoMigrate(&models.UserBasic{})
+	err := dam.db.AutoMigrate(&models.UserBasic{})
 	if err != nil {
 		panic(err)
 	}

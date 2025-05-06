@@ -1,4 +1,4 @@
-package routers
+package api_router
 
 import (
 	"Berry_IM/controller/v1/ucenter"
@@ -7,7 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func initApiRouters(r *gin.Engine) {
+func InitApiRouters(r *gin.Engine) {
 	// 设置文件大小限制（默认是32MiB）
 	r.MaxMultipartMemory = 8 << 20 // 8 MiB
 
@@ -34,7 +34,7 @@ func initUserControllerRouters(r *gin.Engine) {
 	// 初始化控制器
 	ucenterController := ucenter.NewUserController()
 
-	userGroup := r.Group("/api/v1/ucenter")
+	userGroup := r.Group("/api/v1")
 	{
 		//api/v2/users路由全局中间件
 		userGroup.Use(func(c *gin.Context) {
@@ -43,7 +43,7 @@ func initUserControllerRouters(r *gin.Engine) {
 			fmt.Printf("[Middleware]After-/api/v1/ucenter路由全局中间件...\n")
 		})
 
-		userGroup.POST("/create", func(c *gin.Context) {
+		userGroup.POST("/ucenter/create", func(c *gin.Context) {
 			// 路由中间件
 			fmt.Printf("[Middleware]Befor-create user...\n")
 

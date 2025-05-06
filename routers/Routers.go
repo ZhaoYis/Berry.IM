@@ -1,10 +1,18 @@
 package routers
 
-import "github.com/gin-gonic/gin"
+import (
+	"Berry_IM/routers/api_router"
+	"Berry_IM/routers/swagger"
+	"github.com/gin-gonic/gin"
+)
 
 func Router() *gin.Engine {
 	r := gin.Default()
+	// 初始化swagger
+	swagger.InitSwaggerInfo()
 	// 注册路由
-	initApiRouters(r)
+	api_router.InitApiRouters(r)
+	// 注册swagger路由
+	swagger.RegisterSwaggerRouter(r)
 	return r
 }

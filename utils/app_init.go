@@ -11,7 +11,7 @@ func InitApp() {
 	// 2、初始化数据库
 	InitMySQL()
 	// 3、自动迁移数据库
-	dam := db_migrate.NewDbAutoMigrate()
+	dam := db_migrate.NewDbAutoMigrate(GetMySqlDB())
 	dam.AutoMigrate()
 	fmt.Println("[main]迁移数据库完成！")
 }
