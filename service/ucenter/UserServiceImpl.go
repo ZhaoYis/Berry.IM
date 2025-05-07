@@ -33,6 +33,25 @@ func (us *UserServiceImpl) CreateUser(request *bizRequest.BizUserCreatedRequest)
 	}, nil
 }
 
+func (us *UserServiceImpl) UpdateUser(request *bizRequest.BizUserUpdatedRequest) (*bizResponse.UserUpdatedResultBO, error) {
+	userUpdatedModel := &domainRequest.UserUpdatedModel{
+		Name:       request.Name,
+		Password:   request.Password,
+		Email:      request.Email,
+		Phone:      request.Phone,
+		ClientIp:   request.ClientIp,
+		ClientPort: request.ClientPort,
+		DeviceInfo: request.DeviceInfo,
+	}
+	_, err := us.userDomainService.Update(request.Uid, userUpdatedModel)
+	if err != nil {
+		return nil, err
+	}
+	return &bizResponse.UserUpdatedResultBO{
+		Uid: request.Uid,
+	}, nil
+}
+
 func (us *UserServiceImpl) GetUserById(uid string) (*bizResponse.UserBasicInfoResultBO, error) {
 	userBasicModel, err := us.userDomainService.GetUserById(uid)
 	if err != nil {

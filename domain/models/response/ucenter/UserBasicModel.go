@@ -6,7 +6,7 @@ type UserBasicModel struct {
 	gorm.Model
 	Uid           string
 	Name          string
-	PassWord      string
+	Password      string
 	Phone         string
 	Email         string
 	Identity      string

@@ -20,4 +20,11 @@ type UserService interface {
 	 * @return error 错误信息
 	 */
 	GetUserById(uid string) (*bizResponse.UserBasicInfoResultBO, error)
+	/**
+	 * 更新用户信息
+	 * @param b *ucenter.BizUserUpdatedRequest
+	 * @return *ucenter.BizUserUpdatedResultBO
+	 * @return error
+	 */
+	UpdateUser(b *bizRequest.BizUserUpdatedRequest) (*bizResponse.UserUpdatedResultBO, error)
 }

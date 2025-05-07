@@ -29,18 +29,29 @@ func (us *UserDomainServiceImpl) Create(request *domainRequest.UserCreatedModel)
 	userBasic := &models.UserBasic{
 		Uid:      uuid.NewString(),
 		Name:     request.Name,
-		PassWord: request.Password,
+		Password: request.Password,
 		Phone:    request.Phone,
 		Email:    request.Email,
+		Identity: uuid.NewString(),
 	}
 	us.db.Create(userBasic)
 	return &domainResponse.UserBasicModel{
 		Uid:      userBasic.Uid,
 		Name:     userBasic.Name,
-		PassWord: userBasic.PassWord,
+		Password: userBasic.Password,
 		Phone:    userBasic.Phone,
 		Email:    userBasic.Email,
 	}, nil
+}
+
+/**
+ * Update 更新用户信息
+ * @param request
+ * @return
+ */
+func (us *UserDomainServiceImpl) Update(id string, request *domainRequest.UserUpdatedModel) (bool, error) {
+	us.db.Model(&models.UserBasic{}).Where("uid = ?", id).Updates(request)
+	return true, nil
 }
 
 /**
@@ -57,7 +68,7 @@ func (us *UserDomainServiceImpl) GetUserById(uid string) (*domainResponse.UserBa
 	return &domainResponse.UserBasicModel{
 		Uid:        userBasic.Uid,
 		Name:       userBasic.Name,
-		PassWord:   userBasic.PassWord,
+		Password:   userBasic.Password,
 		Phone:      userBasic.Phone,
 		Email:      userBasic.Email,
 		Identity:   userBasic.Identity,

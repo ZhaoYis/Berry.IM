@@ -33,7 +33,7 @@ func InitUserControllerRouters(r *gin.Engine) {
 				c.Next()
 				fmt.Printf("[Middleware]After-create user...\n")
 			}, ucenterController.CreateUser)
-
+			userGroup.PUT("/update/:uid", ucenterController.UpdateUser)
 			userGroup.GET("/getUserById/:uid", ucenterController.GetUserById)
 			//userGroup.POST("/uploadAvatar", ucenterController.UploadAvatar)
 		}

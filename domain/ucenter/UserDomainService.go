@@ -13,6 +13,12 @@ type UserDomainService interface {
 	 */
 	Create(request *domainRequest.UserCreatedModel) (*domainResponse.UserBasicModel, error)
 	/**
+	 * Update 更新用户信息
+	 * @param request
+	 * @return
+	 */
+	Update(id string, request *domainRequest.UserUpdatedModel) (bool, error)
+	/**
 	 * GetUserById 根据用户ID获取用户信息
 	 * @param uid
 	 * @return

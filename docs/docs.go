@@ -89,6 +89,47 @@ const docTemplate = `{
                     }
                 }
             }
+        },
+        "/ucenter/update/{uid}": {
+            "put": {
+                "description": "更新用户信息",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "ucenter"
+                ],
+                "summary": "更新用户信息",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "用户ID",
+                        "name": "uid",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "请求参数",
+                        "name": "webReq",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ucenter.WebUserUpdatedRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ucenter.UserUpdatedResultVO"
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -117,6 +158,14 @@ const docTemplate = `{
                 }
             }
         },
+        "ucenter.UserUpdatedResultVO": {
+            "type": "object",
+            "properties": {
+                "uid": {
+                    "type": "string"
+                }
+            }
+        },
         "ucenter.WebUserCreatedRequest": {
             "type": "object",
             "required": [
@@ -126,6 +175,41 @@ const docTemplate = `{
                 "phone"
             ],
             "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                }
+            }
+        },
+        "ucenter.WebUserUpdatedRequest": {
+            "type": "object",
+            "required": [
+                "clientIp",
+                "clientPort",
+                "deviceInfo",
+                "email",
+                "name",
+                "password",
+                "phone"
+            ],
+            "properties": {
+                "clientIp": {
+                    "type": "string"
+                },
+                "clientPort": {
+                    "type": "string"
+                },
+                "deviceInfo": {
+                    "type": "string"
+                },
                 "email": {
                     "type": "string"
                 },

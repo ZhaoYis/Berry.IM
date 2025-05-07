@@ -16,6 +16,11 @@ definitions:
       uid:
         type: string
     type: object
+  ucenter.UserUpdatedResultVO:
+    properties:
+      uid:
+        type: string
+    type: object
   ucenter.WebUserCreatedRequest:
     properties:
       email:
@@ -27,6 +32,31 @@ definitions:
       phone:
         type: string
     required:
+    - email
+    - name
+    - password
+    - phone
+    type: object
+  ucenter.WebUserUpdatedRequest:
+    properties:
+      clientIp:
+        type: string
+      clientPort:
+        type: string
+      deviceInfo:
+        type: string
+      email:
+        type: string
+      name:
+        type: string
+      password:
+        type: string
+      phone:
+        type: string
+    required:
+    - clientIp
+    - clientPort
+    - deviceInfo
     - email
     - name
     - password
@@ -90,6 +120,33 @@ paths:
           schema:
             $ref: '#/definitions/ucenter.UserBasicInfoResultVO'
       summary: 获取用户信息
+      tags:
+      - ucenter
+  /ucenter/update/{uid}:
+    put:
+      consumes:
+      - application/json
+      description: 更新用户信息
+      parameters:
+      - description: 用户ID
+        in: path
+        name: uid
+        required: true
+        type: string
+      - description: 请求参数
+        in: body
+        name: webReq
+        required: true
+        schema:
+          $ref: '#/definitions/ucenter.WebUserUpdatedRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ucenter.UserUpdatedResultVO'
+      summary: 更新用户信息
       tags:
       - ucenter
 securityDefinitions:
