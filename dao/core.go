@@ -1,4 +1,4 @@
-package utils
+package dao
 
 import (
 	"github.com/spf13/viper"
@@ -15,7 +15,11 @@ var (
 	err error
 )
 
-// InitMySQL 初始化MySQL
+// GetMySqlDB 获取数据库连接
+func GetMySqlDB() *gorm.DB {
+	return db
+}
+
 func InitMySQL() {
 	newLogger := logger.New(
 		log.New(os.Stdout, "\r\n", log.LstdFlags), // io writer
@@ -35,9 +39,4 @@ func InitMySQL() {
 	if err != nil {
 		panic("failed to connect database")
 	}
-}
-
-// GetMySqlDB 获取数据库连接
-func GetMySqlDB() *gorm.DB {
-	return db
 }
