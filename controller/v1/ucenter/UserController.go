@@ -52,3 +52,27 @@ func (uc *UserController) CreateUser(c *gin.Context) {
 		Uid: bo.Uid,
 	})
 }
+
+// GetUserById 根据用户ID获取用户信息
+//
+//	@Summary		获取用户信息
+//	@Description	获取用户信息
+//	@Tags			ucenter
+//	@Accept			json
+//	@Produce		json
+//	@Param			uid	path		string	true	"用户ID"
+//	@Success		200	{object}	webResponse.UserBasicInfoResultVO
+//	@Router			/ucenter/getUserById/{uid} [get]
+func (uc *UserController) GetUserById(c *gin.Context) {
+	uid := c.Param("uid")
+	bo, err := uc.userService.GetUserById(uid)
+	if err != nil {
+		uc.Error(c, err.Error())
+	}
+	uc.SuccessWithData(c, &webResponse.UserBasicInfoResultVO{
+		Uid:   bo.Uid,
+		Name:  bo.Name,
+		Email: bo.Email,
+		Phone: bo.Phone,
+	})
+}

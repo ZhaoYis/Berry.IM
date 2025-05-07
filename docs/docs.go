@@ -57,9 +57,58 @@ const docTemplate = `{
                     }
                 }
             }
+        },
+        "/ucenter/getUserById/{uid}": {
+            "get": {
+                "description": "获取用户信息",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "ucenter"
+                ],
+                "summary": "获取用户信息",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "用户ID",
+                        "name": "uid",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ucenter.UserBasicInfoResultVO"
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {
+        "ucenter.UserBasicInfoResultVO": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "uid": {
+                    "type": "string"
+                }
+            }
+        },
         "ucenter.UserCreatedResultVO": {
             "type": "object",
             "properties": {

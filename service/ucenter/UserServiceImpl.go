@@ -32,3 +32,16 @@ func (us *UserServiceImpl) CreateUser(request *bizRequest.BizUserCreatedRequest)
 		Uid: userBasicModel.Uid,
 	}, nil
 }
+
+func (us *UserServiceImpl) GetUserById(uid string) (*bizResponse.UserBasicInfoResultBO, error) {
+	userBasicModel, err := us.userDomainService.GetUserById(uid)
+	if err != nil {
+		return nil, err
+	}
+	return &bizResponse.UserBasicInfoResultBO{
+		Uid:   userBasicModel.Uid,
+		Name:  userBasicModel.Name,
+		Email: userBasicModel.Email,
+		Phone: userBasicModel.Phone,
+	}, nil
+}

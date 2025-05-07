@@ -5,6 +5,7 @@ import (
 	domainResponse "Berry_IM/domain/models/response/ucenter"
 	"Berry_IM/models"
 	"Berry_IM/utils"
+	"errors"
 	"github.com/google/uuid"
 	"gorm.io/gorm"
 )
@@ -39,5 +40,31 @@ func (us *UserDomainServiceImpl) Create(request *domainRequest.UserCreatedModel)
 		PassWord: userBasic.PassWord,
 		Phone:    userBasic.Phone,
 		Email:    userBasic.Email,
+	}, nil
+}
+
+/**
+ * GetUserById 根据用户id获取用户信息
+ * @param uid
+ * @return
+ */
+func (us *UserDomainServiceImpl) GetUserById(uid string) (*domainResponse.UserBasicModel, error) {
+	var userBasic models.UserBasic
+	us.db.Where("uid = ?", uid).First(&userBasic)
+	if (userBasic == models.UserBasic{} || userBasic.Uid == "") {
+		return nil, errors.New("用户不存在")
+	}
+	return &domainResponse.UserBasicModel{
+		Uid:        userBasic.Uid,
+		Name:       userBasic.Name,
+		PassWord:   userBasic.PassWord,
+		Phone:      userBasic.Phone,
+		Email:      userBasic.Email,
+		Identity:   userBasic.Identity,
+		ClientIp:   userBasic.ClientIp,
+		LoginTime:  userBasic.LoginTime,
+		LogoutTime: userBasic.LogoutTime,
+		IsLogout:   userBasic.IsLogout,
+		DeviceInfo: userBasic.DeviceInfo,
 	}, nil
 }

@@ -13,4 +13,11 @@ type UserService interface {
 	 * @return error 错误信息
 	 */
 	CreateUser(*bizRequest.BizUserCreatedRequest) (*bizResponse.UserCreatedResultBO, error)
+	/**
+	 * 根据用户ID获取用户信息
+	 * @param uid string 用户ID
+	 * @return *ucenter.BizUserBasicInfoResultBO 用户信息
+	 * @return error 错误信息
+	 */
+	GetUserById(uid string) (*bizResponse.UserBasicInfoResultBO, error)
 }

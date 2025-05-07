@@ -1,5 +1,16 @@
 basePath: /api/v1
 definitions:
+  ucenter.UserBasicInfoResultVO:
+    properties:
+      email:
+        type: string
+      name:
+        type: string
+      phone:
+        type: string
+      uid:
+        type: string
+    type: object
   ucenter.UserCreatedResultVO:
     properties:
       uid:
@@ -58,6 +69,27 @@ paths:
           schema:
             $ref: '#/definitions/ucenter.UserCreatedResultVO'
       summary: 创建用户
+      tags:
+      - ucenter
+  /ucenter/getUserById/{uid}:
+    get:
+      consumes:
+      - application/json
+      description: 获取用户信息
+      parameters:
+      - description: 用户ID
+        in: path
+        name: uid
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ucenter.UserBasicInfoResultVO'
+      summary: 获取用户信息
       tags:
       - ucenter
 securityDefinitions:

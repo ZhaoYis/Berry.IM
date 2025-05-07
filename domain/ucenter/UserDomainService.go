@@ -12,4 +12,10 @@ type UserDomainService interface {
 	 * @return
 	 */
 	Create(request *domainRequest.UserCreatedModel) (*domainResponse.UserBasicModel, error)
+	/**
+	 * GetUserById 根据用户ID获取用户信息
+	 * @param uid
+	 * @return
+	 */
+	GetUserById(uid string) (*domainResponse.UserBasicModel, error)
 }
