@@ -6,6 +6,7 @@ import (
 	webResponse "Berry_IM/controller/models/response/ucenter"
 	bizRequest "Berry_IM/service/models/request/ucenter"
 	userService "Berry_IM/service/ucenter"
+	"github.com/asaskevich/govalidator"
 	"github.com/gin-gonic/gin"
 )
 
@@ -34,6 +35,12 @@ func NewUserController() *UserController {
 func (uc *UserController) CreateUser(c *gin.Context) {
 	var webReq webRequest.WebUserCreatedRequest
 	if err := c.ShouldBindJSON(&webReq); err != nil {
+		uc.Error(c, err.Error())
+		return
+	}
+	// 校验参数
+	_, err := govalidator.ValidateStruct(&webReq)
+	if err != nil {
 		uc.Error(c, err.Error())
 		return
 	}
@@ -68,6 +75,12 @@ func (uc *UserController) UpdateUser(c *gin.Context) {
 	var webReq webRequest.WebUserUpdatedRequest
 	if err := c.ShouldBindJSON(&webReq); err != nil {
 		uc.Error(c, err.Error())
+	}
+	// 校验参数
+	_, err := govalidator.ValidateStruct(&webReq)
+	if err != nil {
+		uc.Error(c, err.Error())
+		return
 	}
 	bo, err := uc.userService.UpdateUser(&bizRequest.BizUserUpdatedRequest{
 		Uid:        c.Param("uid"),
