@@ -5,6 +5,7 @@ type UserUpdatedModel struct {
 	Password      string `json:"password"`
 	Email         string `json:"email"`
 	Phone         string `json:"phone"`
+	Salt          string `json:"salt"`
 	ClientIp      string `json:"clientIp"`
 	ClientPort    string `json:"clientPort"`
 	HeartbeatTime uint64 `json:"heartbeatTime"`

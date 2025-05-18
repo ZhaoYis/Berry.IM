@@ -1,4 +1,4 @@
-package utils
+package config
 
 import (
 	"errors"
@@ -12,7 +12,7 @@ func InitAppConfig() {
 	// 设置配置文件的名称
 	viper.SetConfigName("app")
 	// 设置配置文件的路径
-	viper.AddConfigPath("config")
+	viper.AddConfigPath("config/files")
 	// 设置配置文件的类型，可选，若不设置，viper 会自动检测
 	viper.SetConfigType("yaml")
 

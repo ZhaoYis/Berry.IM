@@ -1,4 +1,4 @@
-package utils
+package config
 
 import (
 	"Berry_IM/dao"
