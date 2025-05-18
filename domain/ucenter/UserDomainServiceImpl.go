@@ -1,10 +1,10 @@
 package ucenter
 
 import (
+	"Berry_IM/dao"
 	domainRequest "Berry_IM/domain/models/request/ucenter"
 	domainResponse "Berry_IM/domain/models/response/ucenter"
 	"Berry_IM/models"
-	"Berry_IM/utils"
 	"errors"
 	"github.com/google/uuid"
 	"gorm.io/gorm"
@@ -16,7 +16,7 @@ type UserDomainServiceImpl struct {
 
 func NewUserDomainService() *UserDomainServiceImpl {
 	return &UserDomainServiceImpl{
-		db: utils.GetMySqlDB(),
+		db: dao.GetMySqlDB(),
 	}
 }
 
